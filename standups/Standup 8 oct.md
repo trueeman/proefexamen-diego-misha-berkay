@@ -16,7 +16,7 @@
 
 |  Stand-Up      |  | Datum: 8 oct ‘24 | Sprint nr. 1 |
 | :---- | :---- | :---- | :---- |
-| **Wat is klaar sinds vorige Stand-up: ![][image1]** |  |  |  |
+| **Wat is klaar sinds vorige Stand-up: ![image1](https://github.com/trueeman/proefexamen-diego-misha-berkay/blob/1e02a896c81ccf149fc4d265c71ea04935cb7b95/standups/Screenshot%202024-10-08%20at%2010-21-27%20Backlog%20%C2%B7%20proefexamen.png)]** |  |  |  |
 | **Werkt het team volgens planning?** |  |  |  |
 |       **Ja**   |    Nee   Reden:    Oplossing:  |  |  |
 | **Zijn er problemen?** |  |  |  |
