@@ -26,8 +26,9 @@ Volg deze stappen om het project lokaal te installeren:
 1. **Clone de repository**:
    ```bash
    git clone https://github.com/trueeman/proefexamen-diego-misha-berkay.git
+   ```
 
-2. **Navigeer naar het project**
+3. **Navigeer naar het project**
   ```bash
   cd proefexamen-diego-misha-berkay
   ```
