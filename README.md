@@ -1,5 +1,4 @@
 # Proefexamen
-test
 
 ## Teamleden
 
