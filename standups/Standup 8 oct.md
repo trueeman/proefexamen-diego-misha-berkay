@@ -17,11 +17,11 @@
 | **Zijn er problemen?** | Nee | Ja | **Obstakel:** | **Oplossing:** |
 
 #### Stand-Up 2
-| **Datum:**   | **Sprint nr.:**                         |
-| :---- | :---- |
-| **Wat is klaar sinds vorige Stand-up:** |  |
-| **Werkt het team volgens planning?** |  Ja  |    Nee   | **Reden:** | **Oplossing:** |
-| **Zijn er problemen?** |  Nee  |    Ja   | **Obstakel:** | **Oplossing:** |
+| **Datum:**                              | **Sprint nr.: 1**                                                                                                                           |     |               |                |
+| :-------------------------------------- | :------------------------------------------------------------------------------------------------------------------------------------------ | --- | ------------- | -------------- |
+| **Wat is klaar sinds vorige Stand-up:** | ![Screenshot 2024-10-09 at 10-55-49 Backlog · proefexamen](https://github.com/user-attachments/assets/51bae9c4-79ce-4b0d-9e9e-74a5aefc413e) |     |               |                |
+| **Werkt het team volgens planning?**    | Ja                                                                                                                                          | Nee | **Reden:**    | **Oplossing:** |
+| **Zijn er problemen?**                  | Nee                                                                                                                                         | Ja  | **Obstakel:** | **Oplossing:** |
 
 #### Stand-Up 3
 | **Datum:**   | **Sprint nr.:**                         |
