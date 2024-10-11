@@ -4,10 +4,12 @@ use Proefexamen\ElektronischStemmen\Database;
 session_start();
 
 $db = new Database;
-if ($db) : ?>
+$conn = $db->getConn();
 
-<h3 class="text-light" style="position: absolute;">Connectie geslaagd</h3>
-
+if ($conn) : ?>
+<h3 class="text-light" style="position: absolute;">✅ Connectie geslaagd</h3>
+<?php else: ?>
+<h3 class="text-light" style="position: absolute;">⚠️ Connectie gefaald</h3>
 <?php endif; ?>
 
 <!DOCTYPE html>
