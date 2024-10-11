@@ -1,0 +1,28 @@
+{
+    "name": "proefexamen/elektronisch-stemmen",
+    "description": "Een stem applicatie voor het proefexamen project",
+    "type": "project",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Proefexamen\\ElektronischStemmen\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Berkay",
+            "email": "9019917@student.zadkine.nl"
+        },
+        {
+            "name": "Diego",
+            "email": "9019468@student.zadkine.nl"
+        },
+        {
+            "name": "Misha",
+            "email": "9024254@student.zadkine.nl"
+        }
+    ],
+    "require": {
+        "vlucas/phpdotenv": "^5.6"
+    }
+}
