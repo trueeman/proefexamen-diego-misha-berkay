@@ -1,5 +1,6 @@
 
 # Proefexamen
+test
 
 ## Teamleden
 
@@ -20,7 +21,11 @@
 
 - **/project/**: Hier staat de broncode.
 
-Bekijk de documentatie in de `docs`-map voor instructies.
+    - Bekijk de documentatie in de `docs`-map voor instructies.
+
+- **/erd/**: Hier staan database ERDs
+
+7. Bekijk de documentatie in de `docs`-map voor instructies.
 
 ## Planning en voortgang
 
