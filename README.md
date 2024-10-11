@@ -20,6 +20,8 @@ test
 
 - **/project/**: Hier staat de source code
 
+- **/erd/**: Hier staan database ERDs
+
 7. Bekijk de documentatie in de `docs`-map voor instructies.
 
 ## Planning en voortgang
