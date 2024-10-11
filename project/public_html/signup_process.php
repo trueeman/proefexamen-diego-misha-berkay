@@ -6,40 +6,37 @@ session_start();
 
 // Maak connectie met de database
 $db = new Database;
+$conn = $db->getConn();
 
-// Controleer of het formulier is verzonden
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    // Ontvang formuliergegevens
-    $email = $_POST['email'];
-    $gebruikersnaam = $_POST['username'];
-    $wachtwoord = password_hash($_POST['password'], PASSWORD_DEFAULT);  // Hash het wachtwoord
-
-    // Controleer of e-mail en gebruikersnaam niet al bestaan
-    $query = $db->prepare("SELECT * FROM gebruikers WHERE email = :email OR gebruikersnaam = :gebruikersnaam");
-    $query->execute(['email' => $email, 'gebruikersnaam' => $gebruikersnaam]);
-    $user = $query->fetch();
-
-    if ($user) {
-        // Gebruiker bestaat al, geef een foutmelding
-        $_SESSION['error'] = "E-mail of gebruikersnaam is al in gebruik.";
-        header("Location: signup.php");
-    } else {
-        // Voeg nieuwe gebruiker toe aan de database
-        $query = $db->prepare("INSERT INTO gebruikers (email, gebruikersnaam, wachtwoord) VALUES (:email, :gebruikersnaam, :wachtwoord)");
-        $result = $query->execute([
-            'email' => $email,
-            'gebruikersnaam' => $gebruikersnaam,
-            'wachtwoord' => $wachtwoord
-        ]);
-
-        if ($result) {
-            // Succesvolle registratie, stuur gebruiker naar loginpagina
-            $_SESSION['success'] = "Registratie succesvol. U kunt nu inloggen.";
-            header("Location: login.php");
-        } else {
-            // Fout bij het invoegen van de gebruiker
-            $_SESSION['error'] = "Er is een fout opgetreden bij de registratie.";
-            header("Location: signup.php");
-        }
-    }
+// Controleer of data verzonden
+if (!isset($_POST["email"])) { 
+    die("email not set"); 
 }
+if (!isset($_POST["username"])) { 
+    die("username not set"); 
+}
+if (!isset($_POST["password"])) { 
+    die("password not set"); 
+}
+
+// Check of gebruikersnaam bestaat
+$sqlCheckIfExist = "SELECT * FROM gebruikers WHERE gebruikersnaam = ?";
+$stmt = $conn->prepare($sqlCheckIfExist);
+$stmt->bind_param("s", $_POST['username']);
+$stmt->execute();
+$result = $stmt->get_result();
+if ($result->num_rows > 0) {
+    die("gebruikersnaam bestaat al");
+}
+
+// Insert nieuwe gebruiker
+$sqlInsertNewUser = "INSERT INTO gebruikers (gebruikersnaam, wachtwoord) VALUES (?, ?)";
+$stmt = $conn->prepare($sqlInsertNewUser);
+$stmt->bind_param("ss", $_POST['username'], $_POST['password']);
+$stmt->execute();
+
+// Redirect to login page
+header("Location: login.php");
+exit();
+
+?>
