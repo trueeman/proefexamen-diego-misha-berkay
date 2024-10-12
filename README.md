@@ -59,7 +59,9 @@ Volg deze stappen om het project lokaal te installeren:
    cp .env.template .env
    ```
 
-5. **Start de server**  
+5. **Voer de db.sql file uit in uw DBMS**
+
+6. **Start de server**  
    ```bash
    php -S localhost:8000 -t .
    ```
