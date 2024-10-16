@@ -34,7 +34,7 @@ if ($conn) : ?>
             </div>
 
             <!-- Login formulier -->
-            <form class="needs-validation" action="login.php" method="POST" novalidate>
+            <form class="needs-validation" action="login_process.php" method="POST" novalidate>
                 <div class="mb-3">
                     <label for="username" class="form-label">Gebruikersnaam</label>
                     <input type="text" class="form-control" id="username" name="username" required>
