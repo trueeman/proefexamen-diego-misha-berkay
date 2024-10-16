@@ -36,20 +36,9 @@ CREATE TABLE `gebruikers` (
   `is_verkiesbaar` tinyint(1) DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
---
--- Dumping data for table `gebruikers`
---
 
-INSERT INTO `gebruikers` (`id`, `email`, `gebruikersnaam`, `wachtwoord`, `registratiedatum`, `is_verkiesbaar`) VALUES
-(1, NULL, 'misha', '123456', '2024-10-11 11:26:18', 0),
-(2, NULL, 'newuser', '12312321', '2024-10-11 11:55:51', 0),
-(3, NULL, 'b.onal', '123123', '2024-10-11 12:25:53', 0),
-(4, NULL, 'b010', '123123', '2024-10-16 09:10:25', 0),
-(5, NULL, '1231233', '123123', '2024-10-16 09:33:24', 0);
 
--- --------------------------------------------------------
 
---
 -- Table structure for table `partijen`
 --
 
@@ -61,19 +50,7 @@ CREATE TABLE `partijen` (
   `leider` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
---
--- Dumping data for table `partijen`
---
 
-INSERT INTO `partijen` (`id`, `partijnaam`, `datum_oprichting`, `is_actief`, `leider`) VALUES
-(1, 'DENKssss', '2024-05-02', 1, '1231312212'),
-(3, 'DENK', '2005-01-01', 1, '123'),
-(4, 'DENK', '2005-09-09', 1, '123'),
-(5, 'berky', '2004-09-09', 1, 'berky');
-
---
--- Indexes for dumped tables
---
 
 --
 -- Indexes for table `gebruikers`
