@@ -1,8 +1,14 @@
 <?php
+require_once("../vendor/autoload.php");
+use Proefexamen\ElektronischStemmen\Database;
+
 session_start();
 
-$message = ''; // Variabele voor het weergeven van berichten
+// Maak connectie met de database
+$db = new Database;
+$conn = $db->getConn();
 
+$message = ''; // Variabele voor het weergeven van berichten
 if (!isset($_SESSION['userid'])) {
     $message = 'U bent momenteel niet ingelogd. <a href="login.php">Klik hier om in te loggen.</a>';
 } else {
@@ -25,6 +31,29 @@ if (!isset($_SESSION['userid'])) {
         <h1>Dashboard</h1>
         <p><?php echo $message; ?></p>
     </div>
+    <div class="container">
+    <h3>Geregistreerde gebruikers:</h3>
+    <?php
+        $sqlGetUsers = "SELECT gebruikersnaam, registratiedatum, is_verkiesbaar FROM gebruikers";
+        $stmt = $conn -> prepare($sqlGetUsers);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        
+        if ($result->num_rows > 0) {
+            // Loop door alle gebruikers en geef hun gegevens weer
+            while ($row = $result->fetch_assoc()) {
+                $gebruikersnaam = htmlspecialchars($row['gebruikersnaam']);  // Voorkom XSS-aanvallen
+                $registratiedatum = htmlspecialchars($row['registratiedatum']);
+                $is_verkiesbaar = $row['is_verkiesbaar'] ? "Ja" : "Nee";
+
+                echo "<p>Gebruikersnaam: $gebruikersnaam<br>Registratiedatum: $registratiedatum<br>Is verkiesbaar: $is_verkiesbaar</p>";
+            }
+        } else {
+            echo "<p>Geen geregistreerde gebruikers gevonden.</p>";
+        }
+        ?>
+    </div>
+
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </body>
