@@ -26,6 +26,16 @@ if (!isset($_SESSION['userid'])) {
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" href="css/theme.css">
 </head>
+</div>
+<div class="container mt-3">
+    <div class="d-flex justify-content-end">
+        <a href="partijen.php" class="btn btn-primary me-2">Partijen</a>
+        <a href="register_partij.php" class="btn btn-primary me-2">Partij registreren</a>
+        <a href="logout.php" class="btn btn-danger">Logout</a>
+    </div>
+</div>
+</div>
+
 <body class="bg-dark text-light">
     <div class="container text-center mt-5">
         <nav class="navbar navbar-expand-lg bg-body-tertiary">
