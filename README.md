@@ -11,21 +11,14 @@ test
 ## Projectstructuur
 
 - **/docs/**: Bevat documentatie zoals projectvereisten en definities.
-    - [Examenafspraken B1K1 & B1K2](./docs/Examenafspraken_B1K1_B1K2.pdf)
-    - [Proefexamen Definition of Done](./docs/Proefexamen_Definition_of_Done.docx)
   
 - **/standups/**: Bevat wekelijkse voortgangsrapporten van stand-ups.
   
 - **/burndown/**: Burndown charts en andere tracking tools voor het project.
-    - [Burndown Chart Verkiezingen](./burndown/burndown-verkiezingen-d-m-b.xlsx)
 
 - **/project/**: Hier staat de broncode.
 
-    - Bekijk de documentatie in de `docs`-map voor instructies.
-
 - **/erd/**: Hier staan database ERDs
-
-7. Bekijk de documentatie in de `docs`-map voor instructies.
 
 ## Planning en voortgang
 
