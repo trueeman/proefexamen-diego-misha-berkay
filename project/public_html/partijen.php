@@ -118,7 +118,6 @@ $partijen = $result->fetch_all(MYSQLI_ASSOC);
 
         <a href="index.php" class="btn btn-primary">Dashboard</a>
         <a href="register_partij.php" class="btn btn-primary">Nieuwe partij registreren</a>
-        <a href="logout.php" class="btn btn-danger">Logout</a>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
