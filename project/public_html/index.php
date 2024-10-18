@@ -67,40 +67,43 @@ $gebruikers = $resultUsers->fetch_all(MYSQLI_ASSOC);
                 <a class="navbar-brand" href="index.php">
                     <img src="https://www.techniekcollegerotterdam.nl/assets/tcr-logo-a6a45f6beeaae69f30221d89d2a3e4ba1e2696114d5587459bf6a5dcf3603228.svg" alt="Logo" height="30" class="d-inline-block align-text-top">
                 </a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarNav">
-                    <ul class="navbar-nav me-auto">
-                        <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="#">Dashboard</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link disabled" aria-disabled="true">Stemmen</a>
-                        </li>
-                    </ul>
-                    <ul class="navbar-nav ms-auto d-flex">
-                        <?php if (isset($_SESSION["userid"])) : ?>
-                            <li class="nav-item me-2">
-                                <a class="nav-link" href="logout.php">Uitloggen</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="register_partij.php">Partij registreren</a>
-                            </li>
-                        <?php else : ?>
-                            <li class="nav-item">
-                                <a class="nav-link" href="login.php">Inloggen</a>
-                            </li>
-                        <?php endif; ?>
-                    </ul>
-                </div>
-            </div>
-        </nav>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="#">Dashboard</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link disabled" aria-disabled="true">Stemmen</a>
+                    </li>
+                </ul>
+                <ul class="navbar-nav ms-auto d-flex">
+    <?php if (isset($_SESSION["userid"])) : ?>
+        <li class="nav-item me-2">
+            <a class="nav-link" href="logout.php">Uitloggen</a>
+        </li>
+        <?php if (isset($_SESSION['is_verkiesbaar']) && $_SESSION['is_verkiesbaar'] == 1) : ?>
+            <li class="nav-item">
+                <a class="nav-link" href="register_partij.php">Partij registreren</a>
+            </li>
+            <?php endif; ?>
+    <?php else : ?>
+        <li class="nav-item">
+            <a class="nav-link" href="login.php">Inloggen</a>
+        </li>
+    <?php endif; ?>
+    </li>
+      </ul>
+        </div>
+          </div>
+           </nav>
 
-        <!-- Content -->
-        <div class="container mt-5">
-            <h1 class="text-center">Dashboard</h1>
-            <p class="text-center"><?php echo $message; ?></p>
+    <!-- Content -->
+    <div class="container mt-5">
+        <h1 class="text-center">Dashboard</h1>
+        <p class="text-center"><?php echo $message; ?></p>
 
             <!-- Geregistreerde gebruikers sectie -->
             <?php if (isset($_SESSION["userid"])): ?>
@@ -135,43 +138,43 @@ $gebruikers = $resultUsers->fetch_all(MYSQLI_ASSOC);
                         </form>
                     </div>
 
-                    <!-- Geregistreerde partijen worden rechts uitgelijnd -->
-                    <div class="col-md-6">
-                        <h3>Geregistreerde Partijen:</h3>
-                        <table class="table table-striped table-hover table-dark">
-                            <thead>
-                                <tr>
-                                    <th>Partijnaam</th>
-                                    <th>Datum van oprichting</th>
-                                    <th>Is de partij actief?</th>
-                                    <th>Partijleider</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <?php if (count($partijen) > 0): ?>
-                                    <?php foreach ($partijen as $partij): ?>
-                                        <tr>
-                                            <td><?php echo htmlspecialchars($partij['partijnaam']); ?></td>
-                                            <td><?php echo htmlspecialchars($partij['datum_oprichting']); ?></td>
-                                            <td><?php echo $partij['is_actief'] ? "Ja" : "Nee"; ?></td>
-                                            <td><?php echo htmlspecialchars($partij['leider_id']); ?></td>
-                                        </tr>
-                                    <?php endforeach; ?>
-                                <?php else: ?>
+                <!-- Geregistreerde partijen worden rechts uitgelijnd -->
+                <div class="col-md-6">
+                    <h3>Geregistreerde Partijen:</h3>
+                    <table class="table table-striped table-hover table-dark">
+                        <thead>
+                            <tr>
+                                <th>Partijnaam</th>
+                                <th>Datum van oprichting</th>
+                                <th>Is de partij actief?</th>
+                                <th>Partijleider</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php if (count($partijen) > 0): ?>
+                                <?php foreach ($partijen as $partij): ?>
                                     <tr>
-                                        <td colspan="4">Geen geregistreerde partijen gevonden.</td>
+                                        <td><?php echo htmlspecialchars($partij['partijnaam']); ?></td>
+                                        <td><?php echo htmlspecialchars($partij['datum_oprichting']); ?></td>
+                                        <td><?php echo $partij['is_actief'] ? "Ja" : "Nee"; ?></td>
+                                        <td><?php echo htmlspecialchars($partij['leider_id']); ?></td>
                                     </tr>
-                                <?php endif; ?>
-                            </tbody>
-                        </table>
-
-                    </div>
+                                <?php endforeach; ?>
+                            <?php else: ?>
+                                <tr>
+                                    <td colspan="4">Geen geregistreerde partijen gevonden.</td>
+                                </tr>
+                            <?php endif; ?>
+                        </tbody>
+                    </table>
                 </div>
-            <?php else: ?>
-                <p class="text-center">U moet ingelogd zijn om geregistreerde gebruikers en partijen te zien.</p>
-            <?php endif; ?>
-        </div>
+            </div>
+        <?php else: ?>
+            <p class="text-center">U moet ingelogd zijn om geregistreerde gebruikers en partijen te zien.</p>
+        <?php endif; ?>
 
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-    </body>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+</body>
 </html>
