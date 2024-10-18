@@ -10,7 +10,7 @@ $conn = $db->getConn();
 
 $message = ''; // Variabele voor het weergeven van berichten
 if (!isset($_SESSION['userid'])) {
-    $message = 'U bent momenteel niet ingelogd. <a href="login.php">Klik hier om in te loggen.</a>';
+    $message = 'U bent momenteel niet ingelogd.';
 } else {
     $message = 'Welkom, u bent ingelogd!';
 }
@@ -30,25 +30,30 @@ if (!isset($_SESSION['userid'])) {
     <div class="container text-center mt-5">
         <nav class="navbar navbar-expand-lg bg-body-tertiary">
             <div class="container-fluid">
-                <a class="navbar-brand" href="#">Navbar</a>
+                <a class="navbar-brand" href="">
+                    <img src="https://www.techniekcollegerotterdam.nl/assets/tcr-logo-a6a45f6beeaae69f30221d89d2a3e4ba1e2696114d5587459bf6a5dcf3603228.svg" alt="Logo" height="30" class="d-inline-block align-text-top">
+                </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
+                    <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav">
-                    <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="#">Home</a>
-                    </li>
-                    <li class="nav-item">
-                    <a class="nav-link" href="#">Features</a>
-                    </li>
-                    <li class="nav-item">
-                    <a class="nav-link" href="#">Pricing</a>
-                    </li>
-                    <li class="nav-item">
-                    <a class="nav-link disabled" aria-disabled="true">Disabled</a>
-                    </li>
-                </ul>
+                    <ul class="navbar-nav me-auto">
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="#">Dashboard</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link disabled" aria-disabled="true">Stemmen</a>
+                        </li>
+                    </ul>
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item">
+                            <?php if (isset($_SESSION["userid"])) : ?>
+                                <a class="nav-link" href="logout.php">Uitloggen</a>
+                            <?php else : ?>
+                                <a class="nav-link" href="login.php">Inloggen</a>
+                            <?php endif; ?>
+                        </li>
+                    </ul>
                 </div>
             </div>
         </nav>
