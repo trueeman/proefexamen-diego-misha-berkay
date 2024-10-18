@@ -25,7 +25,7 @@ $result = $stmt->get_result();
 
 // Controleer of de gebruiker bestaat
 if ($result->num_rows === 0) {
-    die("Ongeldig gebruikersnaam.");
+    die("Ongeldige gebruikersnaam.");
 }
 
 // Haal de gebruikersgegevens op
@@ -35,7 +35,8 @@ $user = $result->fetch_assoc();
 if ($_POST['password'] == $user['wachtwoord']) {
     // Sla gebruikersinformatie op in de sessie
     $_SESSION['userid'] = $user['id'];
-    
+    $_SESSION['is_verkiesbaar'] = $user['is_verkiesbaar'];
+
     // Redirect naar dashboard of gewenste pagina
     header("Location: index.php");
     exit();
