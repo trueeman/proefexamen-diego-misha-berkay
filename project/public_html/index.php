@@ -27,14 +27,7 @@ if (!isset($_SESSION['userid'])) {
     <link rel="stylesheet" href="css/theme.css">
 </head>
 </div>
-<div class="container mt-3">
-    <div class="d-flex justify-content-end">
-        <a href="partijen.php" class="btn btn-primary me-2">Partijen</a>
-        <a href="register_partij.php" class="btn btn-primary me-2">Partij registreren</a>
-        <a href="logout.php" class="btn btn-danger">Logout</a>
-    </div>
-</div>
-</div>
+
 
 <body class="bg-dark text-light">
     <div class="container text-center mt-5">
@@ -55,13 +48,24 @@ if (!isset($_SESSION['userid'])) {
                             <a class="nav-link disabled" aria-disabled="true">Stemmen</a>
                         </li>
                     </ul>
-                    <ul class="navbar-nav ms-auto">
-                        <li class="nav-item">
-                            <?php if (isset($_SESSION["userid"])) : ?>
-                                <a class="nav-link" href="logout.php">Uitloggen</a>
-                            <?php else : ?>
-                                <a class="nav-link" href="login.php">Inloggen</a>
-                            <?php endif; ?>
+                    <<ul class="navbar-nav ms-auto d-flex">
+                 <?php if (isset($_SESSION["userid"])) : ?>
+                    <li class="nav-item me-2">
+                    <a class="nav-link" href="logout.php">Uitloggen</a>
+                    </li>
+                    <li class="nav-item me-2">
+                    <a class="nav-link" href="partijen.php">Partijen</a>
+                    </li>
+                    <li class="nav-item">
+                    <a class="nav-link" href="register_partij.php">Partij registreren</a>
+                    </li>
+                 <?php else : ?>
+                    <li class="nav-item">
+                    <a class="nav-link" href="login.php">Inloggen</a>
+                    </li>
+                 <?php endif; ?>
+                    </ul>
+
                         </li>
                     </ul>
                 </div>
