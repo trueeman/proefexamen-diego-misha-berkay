@@ -56,5 +56,5 @@ Volg deze stappen om het project lokaal te installeren:
 
 6. **Start de server**  
    ```bash
-   php -S localhost:8000 -t .
+   php -S localhost:8000 -t .\project\public_html\
    ```
