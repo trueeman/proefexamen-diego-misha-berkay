@@ -47,14 +47,15 @@ Volg deze stappen om het project lokaal te installeren:
    composer install
    ```
 
-4. **Projectinstellingen kopiëren**  
+4. **Projectinstellingen kopiëren**
+   Voer ook je eigen gegevens in
    ```bash
    cp .env.template .env
    ```
 
-5. **Voer de db.sql file uit in uw DBMS**
+6. **Voer de db.sql file uit in uw DBMS**
 
-6. **Start de server**  
+7. **Start de server**  
    ```bash
    php -S localhost:8000 -t .\project\public_html\
    ```
