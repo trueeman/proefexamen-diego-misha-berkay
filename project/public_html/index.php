@@ -3,7 +3,6 @@ require_once("../vendor/autoload.php");
 use Proefexamen\ElektronischStemmen\Database;
 
 session_start();
-var_dump($_SESSION['is_verkiesbaar']); // Dit toont alle sessievariabelen
 
 // Maak connectie met de database
 $db = new Database;
