@@ -53,9 +53,6 @@ if (!isset($_SESSION['userid'])) {
                     <li class="nav-item me-2">
                     <a class="nav-link" href="logout.php">Uitloggen</a>
                     </li>
-                    <li class="nav-item me-2">
-                    <a class="nav-link" href="partijen.php">Partijen</a>
-                    </li>
                     <li class="nav-item">
                     <a class="nav-link" href="register_partij.php">Partij registreren</a>
                     </li>
