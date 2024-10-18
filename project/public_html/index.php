@@ -22,7 +22,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['update_verkiesbaarheid
     if (isset($_POST['verkiesbaar'])) {
         foreach ($_POST['verkiesbaar'] as $userId => $isVerkiesbaar) {
             $isVerkiesbaarValue = ($isVerkiesbaar == 'on') ? 1 : 0; // Update met waarde 1 voor verkiesbaar, 0 voor onverkiesbaar
-            $sqlUpdateUser = "UPDATE gebruikers SET is_verkiesbaar = ? WHERE id = ?";
+            $sqlUpdateUser = "UPDATE gebruikers SET userrank = ? WHERE id = ?";
             $stmtUpdateUser = $conn->prepare($sqlUpdateUser);
             $stmtUpdateUser->bind_param("ii", $isVerkiesbaarValue, $userId);
 
@@ -44,7 +44,7 @@ $result = $stmt->get_result();
 $partijen = $result->fetch_all(MYSQLI_ASSOC);
 
 // Haal alle geregistreerde gebruikers op
-$sqlGetUsers = "SELECT id, gebruikersnaam, registratiedatum, is_verkiesbaar FROM gebruikers";
+$sqlGetUsers = "SELECT id, gebruikersnaam, registratiedatum, userrank FROM gebruikers";
 $stmtUsers = $conn->prepare($sqlGetUsers);
 $stmtUsers->execute();
 $resultUsers = $stmtUsers->get_result();
@@ -113,7 +113,7 @@ $gebruikers = $resultUsers->fetch_all(MYSQLI_ASSOC);
                                     <tr>
                                         <th>Gebruikersnaam</th>
                                         <th>Registratiedatum</th>
-                                        <th>Is de gebruiker verkiesbaar?</th>
+                                        <th>User Rank</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -122,7 +122,7 @@ $gebruikers = $resultUsers->fetch_all(MYSQLI_ASSOC);
                                             <tr>
                                                 <td><?php echo htmlspecialchars($gebruiker['gebruikersnaam']); ?></td>
                                                 <td><?php echo htmlspecialchars($gebruiker['registratiedatum']); ?></td>
-                                                <td><?php echo $gebruiker['is_verkiesbaar'] ? 'Ja' : 'Nee'; ?></td>
+                                                <td><?php echo htmlspecialchars($gebruiker['userrank']); ?></td>
                                             </tr>
                                         <?php endforeach; ?>
                                     <?php else: ?>
