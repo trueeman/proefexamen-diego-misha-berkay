@@ -10,6 +10,13 @@ $conn = $db->getConn();
 
 $message = '';
 
+// Haal alle leiders op
+$sqlGetLeiders = "SELECT id, gebruikersnaam FROM gebruikers WHERE is_verkiesbaar = 1"; // Neem alleen verkiesbare gebruikers
+$stmtLeiders = $conn->prepare($sqlGetLeiders);
+$stmtLeiders->execute();
+$resultLeiders = $stmtLeiders->get_result();
+$leiders = $resultLeiders->fetch_all(MYSQLI_ASSOC);
+
 // Verwerk het formulier als het is ingediend
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $partijnaam = $_POST['partijnaam'];
@@ -102,9 +109,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <input type="date" class="form-control" id="datum_oprichting" name="datum_oprichting" required>
             </div>
             <div class="mb-3">
-                <label for="leider" class="form-label">Naam van de leider</label>
-                <input type="text" class="form-control" id="leider" name="leider" required>
-            </div>
+    <label for="leider" class="form-label">Kies een leider</label>
+    <select class="form-select" id="leider" name="leider" required>
+        <option value="" disabled selected>Selecteer een leider</option>
+        <?php foreach ($leiders as $leider): ?>
+            <option value="<?php echo htmlspecialchars($leider['id']); ?>">
+                <?php echo htmlspecialchars($leider['gebruikersnaam']); ?>
+            </option>
+        <?php endforeach; ?>
+    </select>
+</div>
+
             <div class="mb-3 form-check">
                 <input type="checkbox" class="form-check-input" id="is_actief" name="is_actief" checked>
                 <label class="form-check-label" for="is_actief">Is actief?</label>
