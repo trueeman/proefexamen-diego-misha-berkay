@@ -61,17 +61,29 @@ $gebruikers = $resultUsers->fetch_all(MYSQLI_ASSOC);
     <link rel="stylesheet" href="css/theme.css">
 </head>
 <body class="bg-dark text-light">
-    <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg bg-body-tertiary">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="#">
-                <img src="https://www.techniekcollegerotterdam.nl/assets/tcr-logo-a6a45f6beeaae69f30221d89d2a3e4ba1e2696114d5587459bf6a5dcf3603228.svg" alt="Logo" height="30" class="d-inline-block align-text-top">
-            </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav me-auto">
+    <div class="container text-center mt-5">
+        <nav class="navbar navbar-expand-lg bg-body-tertiary">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="index.php">
+                    <img src="https://www.techniekcollegerotterdam.nl/assets/tcr-logo-a6a45f6beeaae69f30221d89d2a3e4ba1e2696114d5587459bf6a5dcf3603228.svg" alt="Logo" height="30" class="d-inline-block align-text-top">
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav me-auto">
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="#">Dashboard</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link disabled" aria-disabled="true">Stemmen</a>
+                        </li>
+                    </ul>
+                    <<ul class="navbar-nav ms-auto d-flex">
+                 <?php if (isset($_SESSION["userid"])) : ?>
+                    <li class="nav-item me-2">
+                    <a class="nav-link" href="logout.php">Uitloggen</a>
+                    </li>
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="#">Dashboard</a>
                     </li>
@@ -165,6 +177,7 @@ $gebruikers = $resultUsers->fetch_all(MYSQLI_ASSOC);
                             <?php endif; ?>
                         </tbody>
                     </table>
+
                 </div>
             </div>
         <?php else: ?>
