@@ -95,13 +95,10 @@ $gebruikers = $resultUsers->fetch_all(MYSQLI_ASSOC);
         </li>
     <?php endif; ?>
     </li>
-    
-</ul>
-
-
-            </div>
+      </ul>
         </div>
-    </nav>
+          </div>
+           </nav>
 
     <!-- Content -->
     <div class="container mt-5">
