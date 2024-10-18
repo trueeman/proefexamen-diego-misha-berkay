@@ -39,9 +39,9 @@
 | **Zijn er problemen?** |  Nee  |  Ja  |
 
 #### Stand-Up 5
-| **Datum:** 16 oct '24 | **Sprint nr.:**                         |
+| **Datum:** 18 oct '24 | **Sprint nr.:**                         |
 | :---- | :---- |
-| **Wat is klaar sinds vorige Stand-up:** |  |
+| **Wat is klaar sinds vorige Stand-up:** | ![image1](https://github.com/trueeman/proefexamen-diego-misha-berkay/blob/11e2ae3ac315860d224bfdf11906250e29c66e24/standups/Screenshot%202024-10-18%20at%2013-12-32%20Backlog%20%C2%B7%20proefexamen.png) |
 | **Werkt het team volgens planning?** |  Ja  |  Nee  |
 | **Zijn er problemen?** |  Nee  |  Ja  |
 
