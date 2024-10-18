@@ -33,7 +33,7 @@ if (!isset($_SESSION['userid'])) {
     <div class="container text-center mt-5">
         <nav class="navbar navbar-expand-lg bg-body-tertiary">
             <div class="container-fluid">
-                <a class="navbar-brand" href="">
+                <a class="navbar-brand" href="index.php">
                     <img src="https://www.techniekcollegerotterdam.nl/assets/tcr-logo-a6a45f6beeaae69f30221d89d2a3e4ba1e2696114d5587459bf6a5dcf3603228.svg" alt="Logo" height="30" class="d-inline-block align-text-top">
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -61,10 +61,6 @@ if (!isset($_SESSION['userid'])) {
                     <a class="nav-link" href="login.php">Inloggen</a>
                     </li>
                  <?php endif; ?>
-                    </ul>
-
-                        </li>
-                    </ul>
                 </div>
             </div>
         </nav>

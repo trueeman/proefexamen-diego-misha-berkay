@@ -6,11 +6,7 @@ session_start();
 $db = new Database;
 $conn = $db->getConn();
 
-if ($conn) : ?>
-<h3 class="text-light" style="position: absolute;">✅ Connectie geslaagd</h3>
-<?php else: ?>
-<h3 class="text-light" style="position: absolute;">⚠️ Connectie gefaald</h3>
-<?php endif; ?>
+?>
 
 <!DOCTYPE html>
 <html lang="en">
