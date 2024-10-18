@@ -15,7 +15,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $partijnaam = $_POST['partijnaam'];
     $datum_oprichting = $_POST['datum_oprichting'];
     $is_actief = isset($_POST['is_actief']) ? 1 : 0; // 1 = TRUE, 0 = FALSE
-    $leider = $_POST['leider'];
+    $leider = $_POST['leider_id'];
 
     // Controleer of de partij al bestaat
     $sqlCheck = "SELECT COUNT(*) FROM partijen WHERE partijnaam = ?";
@@ -30,7 +30,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $message = "De partij bestaat al.";
     } else {
         // Bereid de SQL-insert statement voor
-        $sql = "INSERT INTO partijen (partijnaam, datum_oprichting, is_actief, leider) VALUES (?, ?, ?, ?)";
+        $sql = "INSERT INTO partijen (partijnaam, datum_oprichting, is_actief, leider_id) VALUES (?, ?, ?, ?)";
         $stmt = $conn->prepare($sql);
         $stmt->bind_param("ssis", $partijnaam, $datum_oprichting, $is_actief, $leider);
 
