@@ -11,7 +11,7 @@ $conn = $db->getConn();
 $message = '';
 
 // Haal alle leiders op
-$sqlGetLeiders = "SELECT id, gebruikersnaam FROM gebruikers WHERE is_verkiesbaar = 1"; // Neem alleen verkiesbare gebruikers
+$sqlGetLeiders = "SELECT id, gebruikersnaam FROM gebruikers WHERE userrank = 3"; // Neem alleen verkiesbare gebruikers
 $stmtLeiders = $conn->prepare($sqlGetLeiders);
 $stmtLeiders->execute();
 $resultLeiders = $stmtLeiders->get_result();

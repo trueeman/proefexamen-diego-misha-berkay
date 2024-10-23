@@ -35,7 +35,7 @@ $user = $result->fetch_assoc();
 if ($_POST['password'] == $user['wachtwoord']) {
     // Sla gebruikersinformatie op in de sessie
     $_SESSION['userid'] = $user['id'];
-    $_SESSION['is_verkiesbaar'] = $user['is_verkiesbaar'];
+    $_SESSION['userrank'] = $user['userrank'];
 
     // Redirect naar dashboard of gewenste pagina
     header("Location: index.php");
