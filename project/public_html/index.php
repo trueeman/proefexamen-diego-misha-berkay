@@ -37,7 +37,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['update_verkiesbaarheid
 }
 
 // Haal alle geregistreerde partijen op
-$sqlGetPartijen = "SELECT partijnaam, datum_oprichting, is_actief, leider_id FROM partijen";
+$sqlGetPartijen = "SELECT 
+    p.partijnaam, 
+    p.datum_oprichting, 
+    p.is_actief, 
+    p.leider_id, 
+    g.gebruikersnaam AS leider_gebruikersnaam 
+FROM 
+    partijen p 
+INNER JOIN 
+    gebruikers g ON p.leider_id = g.id;
+";
 $stmt = $conn->prepare($sqlGetPartijen);
 $stmt->execute();
 $result = $stmt->get_result();
@@ -84,9 +94,13 @@ $gebruikers = $resultUsers->fetch_all(MYSQLI_ASSOC);
                             <li class="nav-item me-2">
                                 <a class="nav-link" href="logout.php">Uitloggen</a>
                             </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="register_partij.php">Partij registreren</a>
-                            </li>
+                            <?php if (isset($_SESSION['userrank'])) : ?>
+                                <?php if ($_SESSION['userrank'] == 3) : ?>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="register_partij.php">Partij registreren</a>
+                                    </li>
+                                <?php endif; ?>
+                            <?php endif; ?>
                         <?php else : ?>
                             <li class="nav-item">
                                 <a class="nav-link" href="login.php">Inloggen</a>
@@ -97,79 +111,69 @@ $gebruikers = $resultUsers->fetch_all(MYSQLI_ASSOC);
             </div>
         </nav>
 
-        <!-- Content -->
         <div class="container mt-5">
             <h1 class="text-center">Dashboard</h1>
             <p class="text-center"><?php echo $message; ?></p>
 
-            <!-- Geregistreerde gebruikers sectie -->
-            <?php if (isset($_SESSION["userid"])): ?>
-                <div class="row">
-                    <div class="col-md-6">
-                        <h3>Geregistreerde Gebruikers:</h3>
-                        <form method="post">
-                            <table class="table table-striped table-hover table-dark">
-                                <thead>
+            <div class="row">
+                <div class="col-md-6">
+                    <h3>Geregistreerde Gebruikers:</h3>
+                    <table class="table table-striped table-hover table-dark">
+                        <thead>
+                            <tr>
+                                <th>Gebruikersnaam</th>
+                                <th>Registratiedatum</th>
+                                <th>User Rank</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php if (count($gebruikers) > 0): ?>
+                                <?php foreach ($gebruikers as $gebruiker): ?>
                                     <tr>
-                                        <th>Gebruikersnaam</th>
-                                        <th>Registratiedatum</th>
-                                        <th>User Rank</th>
+                                        <td><?php echo htmlspecialchars($gebruiker['gebruikersnaam']); ?></td>
+                                        <td><?php echo htmlspecialchars($gebruiker['registratiedatum']); ?></td>
+                                        <td><?php echo htmlspecialchars($gebruiker['userrank']); ?></td>
                                     </tr>
-                                </thead>
-                                <tbody>
-                                    <?php if (count($gebruikers) > 0): ?>
-                                        <?php foreach ($gebruikers as $gebruiker): ?>
-                                            <tr>
-                                                <td><?php echo htmlspecialchars($gebruiker['gebruikersnaam']); ?></td>
-                                                <td><?php echo htmlspecialchars($gebruiker['registratiedatum']); ?></td>
-                                                <td><?php echo htmlspecialchars($gebruiker['userrank']); ?></td>
-                                            </tr>
-                                        <?php endforeach; ?>
-                                    <?php else: ?>
-                                        <tr>
-                                            <td colspan="3">Geen geregistreerde gebruikers gevonden.</td>
-                                        </tr>
-                                    <?php endif; ?>
-                                </tbody>
-                            </table>
-                        </form>
-                    </div>
-
-                    <!-- Geregistreerde partijen worden rechts uitgelijnd -->
-                    <div class="col-md-6">
-                        <h3>Geregistreerde Partijen:</h3>
-                        <table class="table table-striped table-hover table-dark">
-                            <thead>
+                                <?php endforeach; ?>
+                            <?php else: ?>
                                 <tr>
-                                    <th>Partijnaam</th>
-                                    <th>Datum van oprichting</th>
-                                    <th>Is de partij actief?</th>
-                                    <th>Partijleider</th>
+                                    <td colspan="3">Geen geregistreerde gebruikers gevonden.</td>
                                 </tr>
-                            </thead>
-                            <tbody>
-                                <?php if (count($partijen) > 0): ?>
-                                    <?php foreach ($partijen as $partij): ?>
-                                        <tr>
-                                            <td><?php echo htmlspecialchars($partij['partijnaam']); ?></td>
-                                            <td><?php echo htmlspecialchars($partij['datum_oprichting']); ?></td>
-                                            <td><?php echo $partij['is_actief'] ? "Ja" : "Nee"; ?></td>
-                                            <td><?php echo htmlspecialchars($partij['leider_id']); ?></td>
-                                        </tr>
-                                    <?php endforeach; ?>
-                                <?php else: ?>
-                                    <tr>
-                                        <td colspan="4">Geen geregistreerde partijen gevonden.</td>
-                                    </tr>
-                                <?php endif; ?>
-                            </tbody>
-                        </table>
-
-                    </div>
+                            <?php endif; ?>
+                        </tbody>
+                    </table>
                 </div>
-            <?php else: ?>
-                <p class="text-center">U moet ingelogd zijn om geregistreerde gebruikers en partijen te zien.</p>
-            <?php endif; ?>
+
+                <div class="col-md-6">
+                    <h3>Geregistreerde Partijen:</h3>
+                    <table class="table table-striped table-hover table-dark">
+                        <thead>
+                            <tr>
+                                <th>Partijnaam</th>
+                                <th>Datum van oprichting</th>
+                                <th>Is de partij actief?</th>
+                                <th>Partijleider</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php if (count($partijen) > 0): ?>
+                                <?php foreach ($partijen as $partij): ?>
+                                    <tr>
+                                        <td><?php echo htmlspecialchars($partij['partijnaam']); ?></td>
+                                        <td><?php echo htmlspecialchars($partij['datum_oprichting']); ?></td>
+                                        <td><?php echo $partij['is_actief'] ? "Ja" : "Nee"; ?></td>
+                                        <td><?php echo htmlspecialchars($partij['leider_gebruikersnaam']); ?></td>
+                                    </tr>
+                                <?php endforeach; ?>
+                            <?php else: ?>
+                                <tr>
+                                    <td colspan="4">Geen geregistreerde partijen gevonden.</td>
+                                </tr>
+                            <?php endif; ?>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
         </div>
 
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
