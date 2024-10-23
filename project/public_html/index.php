@@ -72,8 +72,8 @@ $gebruikers = $resultUsers->fetch_all(MYSQLI_ASSOC);
 </head>
 <body class="bg-dark text-light">
     <div class="container text-center mt-5">
-        <nav class="navbar navbar-expand-lg">
-            <div class="container-fluid ">
+        <nav class="navbar navbar-expand-lg bg-light">
+            <div class="container-fluid text-light">
                 <a class="navbar-brand" href="index.php">
                     <img src="https://www.techniekcollegerotterdam.nl/assets/tcr-logo-a6a45f6beeaae69f30221d89d2a3e4ba1e2696114d5587459bf6a5dcf3603228.svg" alt="Logo" height="30" class="d-inline-block align-text-top">
                 </a>
