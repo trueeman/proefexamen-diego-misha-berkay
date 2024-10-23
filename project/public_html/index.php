@@ -72,8 +72,8 @@ $gebruikers = $resultUsers->fetch_all(MYSQLI_ASSOC);
 </head>
 <body class="bg-dark text-light">
     <div class="container text-center mt-5">
-        <nav class="navbar navbar-expand-lg bg-body-tertiary">
-            <div class="container-fluid">
+        <nav class="navbar navbar-expand-lg">
+            <div class="container-fluid ">
                 <a class="navbar-brand" href="index.php">
                     <img src="https://www.techniekcollegerotterdam.nl/assets/tcr-logo-a6a45f6beeaae69f30221d89d2a3e4ba1e2696114d5587459bf6a5dcf3603228.svg" alt="Logo" height="30" class="d-inline-block align-text-top">
                 </a>
@@ -81,30 +81,29 @@ $gebruikers = $resultUsers->fetch_all(MYSQLI_ASSOC);
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarNav">
-                    <ul class="navbar-nav me-auto">
+                    <ul class="navbar-nav me-auto text-center">
                         <li class="nav-item">
                             <a class="nav-link active" aria-current="page" href="#">Dashboard</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link disabled" aria-disabled="true">Stemmen</a>
+                            <a class="nav-link active" aria-current="page">Stemmen</a>
                         </li>
-                    </ul>
-                    <ul class="navbar-nav ms-auto d-flex">
-                        <?php if (isset($_SESSION["userid"])) : ?>
-                            <li class="nav-item me-2">
-                                <a class="nav-link" href="logout.php">Uitloggen</a>
-                            </li>
-                            <?php if (isset($_SESSION['userrank'])) : ?>
-                                <?php if ($_SESSION['userrank'] == 3) : ?>
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="register_partij.php">Partij registreren</a>
-                                    </li>
-                                <?php endif; ?>
-                            <?php endif; ?>
+
+                        <?php if (isset($_SESSION["userrank"])) : ?>
+                        <li class="nav-item me-2">
+                            <a class="nav-link" href="logout.php">Uitloggen</a>
+                        </li>
+                        <?php if (isset($_SESSION['userrank'])) : ?>
+                        <?php if ($_SESSION['userrank'] == 3) : ?>
+                        <li class="nav-item">
+                            <a class="nav-link" href="register_partij.php">Partij registreren</a>
+                        </li>
+                        <?php endif; ?>
+                        <?php endif; ?>
                         <?php else : ?>
-                            <li class="nav-item">
-                                <a class="nav-link" href="login.php">Inloggen</a>
-                            </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="login.php">Inloggen</a>
+                        </li>
                         <?php endif; ?>
                     </ul>
                 </div>
@@ -175,7 +174,7 @@ $gebruikers = $resultUsers->fetch_all(MYSQLI_ASSOC);
                 </div>
             </div>
         </div>
-
+    </div>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     </body>
 </html>
