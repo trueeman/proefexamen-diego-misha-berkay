@@ -25,7 +25,7 @@
 | **Zijn er problemen?**                  | Nee  |  Ja  |
 
 #### Stand-Up 3
-| **Datum:**   | **Sprint nr.:**                         |
+| **Datum:**   | **Sprint nr.:** 1 |
 | :---- | :---- |
 | **Wat is klaar sinds vorige Stand-up:** |  |
 | **Werkt het team volgens planning?** |  Ja  |  Nee  |
@@ -39,7 +39,14 @@
 | **Zijn er problemen?** |  Nee  |  Ja  |
 
 #### Stand-Up 5
-| **Datum:** 16 oct '24 | **Sprint nr.:**                         |
+| **Datum:** 16 oct '24 | **Sprint nr.:** 2 |
+| :---- | :---- |
+| **Wat is klaar sinds vorige Stand-up:** |  |
+| **Werkt het team volgens planning?** |  Ja  |  Nee  |
+| **Zijn er problemen?** |  Nee  |  Ja  |
+
+#### Stand-Up 6
+| **Datum:** 23 oct '24 | **Sprint nr.:** 2 |
 | :---- | :---- |
 | **Wat is klaar sinds vorige Stand-up:** |  |
 | **Werkt het team volgens planning?** |  Ja  |  Nee  |
