@@ -10,40 +10,33 @@ $conn = $db->getConn();
 
 $message = '';
 
-// Haal alle leiders op
-$sqlGetLeiders = "SELECT id, gebruikersnaam FROM gebruikers WHERE userrank = 3"; // Neem alleen verkiesbare gebruikers
-$stmtLeiders = $conn->prepare($sqlGetLeiders);
-$stmtLeiders->execute();
-$resultLeiders = $stmtLeiders->get_result();
-$leiders = $resultLeiders->fetch_all(MYSQLI_ASSOC);
-
 // Verwerk het formulier als het is ingediend
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $partijnaam = $_POST['partijnaam'];
-    $datum_oprichting = $_POST['datum_oprichting'];
-    $is_actief = isset($_POST['is_actief']) ? 1 : 0; // 1 = TRUE, 0 = FALSE
-    $leider = $_POST['leider_id'];
+    $verkiezingnaam = $_POST['verkiezingnaam'];
+    $verkiezingssoort = $_POST['verkiezingssoort'];
+    $startdatum = $_POST['startdatum'];
+    $einddatum = $_POST['einddatum'];
 
-    // Controleer of de partij al bestaat
-    $sqlCheck = "SELECT COUNT(*) FROM partijen WHERE partijnaam = ?";
+    // Controleer of de verkiezing al bestaat
+    $sqlCheck = "SELECT COUNT(*) FROM verkiezingen WHERE verkiezingnaam = ?";
     $stmtCheck = $conn->prepare($sqlCheck);
-    $stmtCheck->bind_param("s", $partijnaam);
+    $stmtCheck->bind_param("s", $verkiezingnaam);
     $stmtCheck->execute();
     $stmtCheck->bind_result($count);
     $stmtCheck->fetch();
     $stmtCheck->close();
 
     if ($count > 0) {
-        $message = "De partij bestaat al.";
+        $message = "De verkiezing bestaat al.";
     } else {
         // Bereid de SQL-insert statement voor
-        $sql = "INSERT INTO partijen (partijnaam, datum_oprichting, is_actief, leider_id) VALUES (?, ?, ?, ?)";
+        $sql = "INSERT INTO verkiezingen (verkiezingnaam, verkiezingssoort, startdatum, einddatum) VALUES (?, ?, ?, ?)";
         $stmt = $conn->prepare($sql);
-        $stmt->bind_param("ssis", $partijnaam, $datum_oprichting, $is_actief, $leider);
+        $stmt->bind_param("ssss", $verkiezingnaam, $verkiezingssoort, $startdatum, $einddatum);
 
         if ($stmt->execute()) {
-            $message = "De partij is succesvol geregistreerd.";
-            header("Location: register_partij.php");
+            $message = "De verkiezing is succesvol geregistreerd.";
+            header("Location: register_verkiezing.php");
             exit();
         } else {
             $message = "Er is een fout opgetreden: " . $stmt->error;
@@ -67,7 +60,6 @@ if ($user['userrank'] != 3) {
 } else {
     $message = 'Welkom, u bent ingelogd!';
 }
-
 ?>
 
 <!DOCTYPE html>
@@ -75,7 +67,7 @@ if ($user['userrank'] != 3) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Partij Registreren</title>
+    <title>Verkiezing Registreren</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body class="bg-dark text-light">
@@ -120,34 +112,26 @@ if ($user['userrank'] != 3) {
             </div>
         </nav>
         <br>
-        <h1>Registreer een nieuwe partij</h1>
+        <h1>Registreer een nieuwe verkiezing</h1>
         <p><?php echo $message; ?></p>
-        <form action="register_partij.php" method="post">
+        <form action="register_verkiezing.php" method="post">
             <div class="mb-3">
-                <label for="partijnaam" class="form-label">Partijnaam</label>
-                <input type="text" class="form-control" id="partijnaam" name="partijnaam" required>
+                <label for="verkiezingnaam" class="form-label">Verkiezingnaam</label>
+                <input type="text" class="form-control" id="verkiezingnaam" name="verkiezingnaam" required>
             </div>
             <div class="mb-3">
-                <label for="datum_oprichting" class="form-label">Datum van oprichting</label>
-                <input type="date" class="form-control" id="datum_oprichting" name="datum_oprichting" required>
+                <label for="verkiezingssoort" class="form-label">Verkiezingssoort</label>
+                <input type="text" class="form-control" id="verkiezingssoort" name="verkiezingssoort" required>
             </div>
             <div class="mb-3">
-    <label for="leider" class="form-label">Kies een leider</label>
-    <select class="form-select" id="leider" name="leider" required>
-        <option value="" disabled selected>Selecteer een leider</option>
-        <?php foreach ($leiders as $leider): ?>
-            <option value="<?php echo htmlspecialchars($leider['id']); ?>">
-                <?php echo htmlspecialchars($leider['gebruikersnaam']); ?>
-            </option>
-        <?php endforeach; ?>
-    </select>
-</div>
-
-            <div class="mb-3 form-check">
-                <input type="checkbox" class="form-check-input" id="is_actief" name="is_actief" checked>
-                <label class="form-check-label" for="is_actief">Is actief?</label>
+                <label for="startdatum" class="form-label">Startdatum</label>
+                <input type="date" class="form-control" id="startdatum" name="startdatum" required>
             </div>
-            <button type="submit" class="btn btn-primary">Registreer partij</button>
+            <div class="mb-3">
+                <label for="einddatum" class="form-label">Einddatum</label>
+                <input type="date" class="form-control" id="einddatum" name="einddatum" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Registreer verkiezing</button>
         </form>
     </div>
 

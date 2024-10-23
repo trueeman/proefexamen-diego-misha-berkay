@@ -88,23 +88,19 @@ $gebruikers = $resultUsers->fetch_all(MYSQLI_ASSOC);
                         <li class="nav-item">
                             <a class="nav-link disabled" aria-disabled="true">Stemmen</a>
                         </li>
-                        <?php if ($_SESSION["userrank"] == 2) : ?>
-                        <li class="nav-item">
-                            <a class="nav-link disabled" href="admin.php" aria-disabled="true">Admin</a>
-                        </li>
-                        <?php endif; ?>
                     </ul>
                     <ul class="navbar-nav ms-auto d-flex">
-                        <?php if (isset($_SESSION["userid"])) : ?>
+                    <?php if (isset($_SESSION["userid"])) : ?>
                             <li class="nav-item me-2">
                                 <a class="nav-link" href="logout.php">Uitloggen</a>
                             </li>
-                            <?php if (isset($_SESSION['userrank'])) : ?>
-                                <?php if ($_SESSION['userrank'] == 3) : ?>
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="register_partij.php">Partij registreren</a>
-                                    </li>
-                                <?php endif; ?>
+                            <?php if ($_SESSION["userrank"] == 3) : ?>
+                                <li class="nav-item">
+                                    <a class="nav-link active" aria-current="page" href="register_partij.php">Partij registreren</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link active" aria-current="page" href="register_verkiezing.php">Verkiezing aanmaken</a>
+                                </li>
                             <?php endif; ?>
                         <?php else : ?>
                             <li class="nav-item">
