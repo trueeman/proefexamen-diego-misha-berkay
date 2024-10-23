@@ -50,6 +50,40 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
     }
 }
+
+// Haal de userrank op van de ingelogde gebruiker
+$sqlGetUserRank = "SELECT userrank FROM gebruikers WHERE id = ?";
+$stmtGetUserRank = $conn->prepare($sqlGetUserRank);
+$stmtGetUserRank->bind_param("i", $_SESSION['userid']);
+$stmtGetUserRank->execute();
+$resultUserRank = $stmtGetUserRank->get_result();
+$user = $resultUserRank->fetch_assoc();
+
+// Controleer of de userrank gelijk is aan 2
+if ($user['userrank'] != 2) {
+    $message = 'U heeft geen toegang tot deze pagina.';
+    header("Location: index.php"); // Redirect
+    exit;
+} else {
+    $message = 'Welkom, u bent ingelogd!';
+}
+
+// Haal de userrank op van de ingelogde gebruiker
+$sqlGetUserRank = "SELECT userrank FROM gebruikers WHERE id = ?";
+$stmtGetUserRank = $conn->prepare($sqlGetUserRank);
+$stmtGetUserRank->bind_param("i", $_SESSION['userid']);
+$stmtGetUserRank->execute();
+$resultUserRank = $stmtGetUserRank->get_result();
+$user = $resultUserRank->fetch_assoc();
+
+// Controleer of de userrank gelijk is aan 2
+if ($user['userrank'] != 2) {
+    $message = 'U heeft geen toegang tot deze pagina.';
+    header("Location: index.php"); // Redirect
+    exit;
+} else {
+    $message = 'Welkom, u bent ingelogd!';
+}
 ?>
 
 <!DOCTYPE html>
