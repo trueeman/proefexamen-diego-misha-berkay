@@ -48,9 +48,9 @@
 #### Stand-Up 6
 | **Datum:** 23 oct '24 | **Sprint nr.:** 2 |
 | :---- | :---- |
-| **Wat is klaar sinds vorige Stand-up:** |  |
+| **Wat is klaar sinds vorige Stand-up:** | ![image1](https://github.com/trueeman/proefexamen-diego-misha-berkay/blob/main/standups/Screenshot%202024-10-23%20120325.png) |
 | **Werkt het team volgens planning?** |  Ja  |  Nee  |
-| **Zijn er problemen?** |  Nee  |  Ja  |
+| **Zijn er problemen?** |  Ja, het project is niet af  |
 
 ---
 
