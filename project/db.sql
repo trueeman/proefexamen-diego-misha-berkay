@@ -27,7 +27,8 @@ create table verkiezingen (
   verkiezingnaam varchar(255),
   verkiezingssoort varchar(255),
   startdatum date,
-  einddatum date
+  einddatum date,
+  primary key(id)
 );
 
 COMMIT;
